@@ -1,12 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
 
-const BasicComponent: React.FC = () => {
-    return (
-        <View>
-            <Text>Hola, este es un componente básico de React Native!</Text>
-        </View>
-    );
+const Stack = createStackNavigator();
+
+const AppNavigator: React.FC = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Home" component={HomeScreen} />
+    </Stack.Navigator>
+  );
 };
 
-export default BasicComponent;
+export default AppNavigator;
