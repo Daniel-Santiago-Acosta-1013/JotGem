@@ -1,11 +1,24 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
+import Note from '../Note/Note';
+import { styles } from './NoteList.styles';
 
-const NoteList = () => {
+const noteColors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF'];
+const notes = [
+    { id: '1', title: 'UI concepts worth existing' },
+    { id: '2', title: 'Book Review: The Design of Everyday Things' },
+];
+
+const NoteList: React.FC = () => {
     return (
-        <View>
-            <Text>¡Hola, mundo!</Text>
-        </View>
+        <FlatList
+            data={notes}
+            renderItem={({ item, index }) => (
+                <Note title={item.title} color={noteColors[index % noteColors.length]} onPress={() => { }} id={item.id} />
+            )}
+            keyExtractor={(item) => item.id}
+            style={styles.list}
+        />
     );
 };
 

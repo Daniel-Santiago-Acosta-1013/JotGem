@@ -1,26 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { styles } from './HomeScreen.styles';
+import NoteList from '../../components/NoteList/NoteList';
 
 const HomeScreen: React.FC = () => {
     return (
         <View style={styles.container}>
+            <NoteList/>
             <Text style={styles.text}>¡Bienvenido a HomeScreen!</Text>
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    text: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-});
 
 export default HomeScreen;
