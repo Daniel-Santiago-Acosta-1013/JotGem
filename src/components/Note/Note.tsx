@@ -1,22 +1,21 @@
-// src/components/Note/Note.tsx
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { styles } from './Note.styles';
 
 interface NoteProps {
     id: string;
     title: string;
     onPress: () => void;
-    color: string;  // Añadir propiedad de color
+    color: string;
 }
 
 const Note: React.FC<NoteProps> = ({ id, title, onPress, color }) => {
     return (
-        <View style={[styles.noteContainer, { backgroundColor: color }]}>  // Aplicar el color pasado como propiedad
-            <Text style={styles.noteTitle} onPress={onPress}>
+        <TouchableOpacity onPress={onPress} style={[styles.noteContainer, { backgroundColor: color }]}>
+            <Text style={styles.noteTitle}>
                 {title}
             </Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 
