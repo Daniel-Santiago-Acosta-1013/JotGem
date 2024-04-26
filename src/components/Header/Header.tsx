@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import IconFeather from 'react-native-vector-icons/Feather';
+import { View, TouchableOpacity, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './Header.styles';
 
 const Header: React.FC = () => {
@@ -8,11 +8,11 @@ const Header: React.FC = () => {
         <View style={styles.headerContainer}>
             <Text style={styles.headerTitle}>Notes</Text>
             <View style={styles.headerIcons}>
-                <TouchableOpacity onPress={() => { /* lógica para búsqueda */ }}>
-                    <IconFeather name="search" size={24} /> {/* Ícono de búsqueda */}
+                <TouchableOpacity style={styles.iconStyle}>
+                    <Icon name="menu" size={24} color="#fff" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { /* lógica para mostrar información */ }}>
-                    <IconFeather name="info" size={24} /> {/* Ícono de información */}s
+                <TouchableOpacity style={styles.iconStyle}>
+                    <Icon name="refresh" size={24} color="#sfff" />
                 </TouchableOpacity>
             </View>
         </View>
