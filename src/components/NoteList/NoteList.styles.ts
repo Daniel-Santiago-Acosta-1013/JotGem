@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   list: {
     padding: 16,
+    width: '100%',
   },
   emptyContainer: {
     marginTop: -80,

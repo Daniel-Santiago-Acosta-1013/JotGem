@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
         padding: 20,
         marginVertical: 8,
         borderRadius: 10,
+        width: '100%',
     },
     noteTitle: {
         fontSize: 18,
