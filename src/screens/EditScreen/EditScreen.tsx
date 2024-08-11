@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from '
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './EditScreen.styles';
-import { NavigationProp, RouteProp } from '@react-navigation/native';
+import { NavigationProp, RouteProp, StackActions } from '@react-navigation/native';
 
 type RootStackParamList = {
     HomeScreen: undefined;
@@ -47,7 +47,7 @@ const EditScreen: React.FC<EditScreenProps> = ({ navigation, route }) => {
 
         try {
             await AsyncStorage.setItem(id, JSON.stringify({ title, content }));
-            navigation.goBack();
+            navigation.dispatch(StackActions.replace('Home'));
         } catch (error) {
             console.error('Failed to update note', error);
         }
@@ -56,7 +56,7 @@ const EditScreen: React.FC<EditScreenProps> = ({ navigation, route }) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={navigation.goBack}>
+                <TouchableOpacity onPress={() => navigation.dispatch(StackActions.replace('Home'))}>
                     <Icon name="arrow-left" size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={updateNote}>

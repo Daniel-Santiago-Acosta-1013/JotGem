@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from '
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './NoteScreen.styles';
-import { NavigationProp } from '@react-navigation/native';
+import { NavigationProp, StackActions } from '@react-navigation/native';
 
 type RootStackParamList = {
     HomeScreen: undefined;
@@ -30,8 +30,8 @@ const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
             const id = new Date().toISOString();
             // Save the note with the ID as the key
             await AsyncStorage.setItem(id, JSON.stringify({ title, content }));
-            // Go back to the HomeScreen
-            navigation.goBack();
+            // Reset the stack and navigate to the HomeScreen
+            navigation.dispatch(StackActions.replace('Home'));
         } catch (error) {
             // Error saving note
             console.error(error);
@@ -41,7 +41,7 @@ const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={navigation.goBack}>
+                <TouchableOpacity onPress={() => navigation.dispatch(StackActions.replace('Home'))}>
                     <Icon name="arrow-left" size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={saveNote}>
