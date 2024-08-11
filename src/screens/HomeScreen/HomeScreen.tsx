@@ -26,7 +26,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         <View style={styles.container}>
             <Header />
             <NoteList />
-            <Text style={styles.text}>¡Bienvenido a HomeScreen!</Text>
             <TouchableOpacity onPress={goToAddNote} style={styles.addButton}>
                 <Icon name="plus" size={24} />
             </TouchableOpacity>
