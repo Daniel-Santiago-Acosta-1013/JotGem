@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button } from 'react-native';
+import { styles } from "./SearchBar.styles"
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -22,21 +23,5 @@ const SearchBar = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 10,
-    },
-    input: {
-        flex: 1,
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginRight: 10,
-        paddingLeft: 10,
-    },
-});
 
 export default SearchBar;
