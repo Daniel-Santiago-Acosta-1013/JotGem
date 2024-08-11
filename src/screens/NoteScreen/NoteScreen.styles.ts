@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
     titleInput: {
         fontSize: 44,
         color: '#fff',
-        borderBottomWidth: 1,
         borderBottomColor: '#333',
         paddingVertical: 8,
         paddingHorizontal: 16,
