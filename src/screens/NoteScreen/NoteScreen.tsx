@@ -41,11 +41,14 @@ const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.dispatch(StackActions.replace('Home'))}>
-                    <Icon name="arrow-left" size={24} />
+                <TouchableOpacity
+                    onPress={() => navigation.dispatch(StackActions.replace('Home'))}
+                    style={styles.styleIcon}
+                >
+                    <Icon name="arrow-left" size={24} color={"#fff"} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={saveNote}>
-                    <Icon name="save" size={24} />
+                <TouchableOpacity onPress={saveNote} style={styles.styleIcon}>
+                    <Icon name="save" size={24} color={"#fff"}/>
                 </TouchableOpacity>
             </View>
             <TextInput

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3B3B3B',
+        backgroundColor: '#252525',
     },
     header: {
         marginTop: 50,
@@ -11,7 +11,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 16,
+        backgroundColor: '#252525',
+    },
+    styleIcon: {
         backgroundColor: '#3B3B3B',
+        padding: 16,
+        borderRadius: 10,
     },
     titleInput: {
         fontSize: 44,

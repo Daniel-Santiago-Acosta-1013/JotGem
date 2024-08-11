@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
-import { styles } from './EditScreen.styles';
 import { NavigationProp, RouteProp, StackActions } from '@react-navigation/native';
+import { styles } from './EditScreen.styles';
 
 type RootStackParamList = {
     HomeScreen: undefined;
@@ -56,11 +56,14 @@ const EditScreen: React.FC<EditScreenProps> = ({ navigation, route }) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.dispatch(StackActions.replace('Home'))}>
-                    <Icon name="arrow-left" size={24} />
+                <TouchableOpacity
+                    onPress={() => navigation.dispatch(StackActions.replace('Home'))}
+                    style={styles.styleIcon}
+                >
+                    <Icon name="arrow-left" size={24} color={"#fff"} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={updateNote}>
-                    <Icon name="save" size={24} />
+                <TouchableOpacity onPress={updateNote} style={styles.styleIcon}>
+                    <Icon name="save" size={24} color={"#fff"}/>
                 </TouchableOpacity>
             </View>
             <TextInput
