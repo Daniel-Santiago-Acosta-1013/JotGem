@@ -25,7 +25,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Header />
-            <NoteList />
+            <NoteList navigation={navigation} />
             <TouchableOpacity onPress={goToAddNote} style={styles.addButton}>
                 <Icon name="plus" size={24} color={"#fff"} />
             </TouchableOpacity>
