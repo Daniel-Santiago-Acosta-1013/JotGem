@@ -4,4 +4,19 @@ export const styles = StyleSheet.create({
   list: {
     padding: 16,
   },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyImage: {
+    width: 400,
+    height: 400,
+    resizeMode: 'contain',
+  },
+  emptyText: {
+    fontSize: 24,
+    marginTop: 5,
+    color: '#FFF',
+  }
 });
