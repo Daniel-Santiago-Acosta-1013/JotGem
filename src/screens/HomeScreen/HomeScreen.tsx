@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import NoteList from '../../components/NoteList/NoteList';
 import Header from '../../components/Header/Header';
@@ -15,8 +15,12 @@ interface HomeScreenProps {
     navigation: NavigationProp<RootStackParamList, 'HomeScreen'>;
 }
 
-
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = (query: string) => {
+        setSearchQuery(query);
+    };
 
     const goToAddNote = () => {
         navigation.navigate('NoteScreen');
@@ -24,8 +28,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Header />
-            <NoteList navigation={navigation} />
+            <Header onSearch={handleSearch} />
+            <NoteList navigation={navigation} searchQuery={searchQuery} />
             <TouchableOpacity onPress={goToAddNote} style={styles.addButton}>
                 <Icon name="plus" size={24} color={"#fff"} />
             </TouchableOpacity>

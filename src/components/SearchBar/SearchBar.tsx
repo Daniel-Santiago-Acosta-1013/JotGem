@@ -1,27 +1,35 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
-import { styles } from "./SearchBar.styles"
+import { View, TextInput, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import { styles } from "./SearchBar.styles";
 
-const SearchBar = () => {
+interface SearchBarProps {
+    onClose: () => void;
+    onSearch: (query: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onClose, onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
 
-    const handleSearch = () => {
-        // Aquí puedes manejar la lógica de búsqueda
-        console.log(searchQuery);
+    const handleInputChange = (text: string) => {
+        setSearchQuery(text);
+        onSearch(text);
     };
 
     return (
         <View style={styles.container}>
             <TextInput
                 style={styles.input}
-                onChangeText={setSearchQuery}
+                onChangeText={handleInputChange}
                 value={searchQuery}
                 placeholder="Buscar..."
+                placeholderTextColor="#CCCCCC"
             />
-            <Button onPress={handleSearch} title="Buscar" />
+            <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                <Icon name="x" size={24} color="#fff" />
+            </TouchableOpacity>
         </View>
     );
 };
-
 
 export default SearchBar;

@@ -56,12 +56,15 @@ const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
                 onChangeText={setTitle}
                 placeholder="Title"
                 style={styles.titleInput}
+                placeholderTextColor={"#CCCCCC"}
+                multiline
             />
             <TextInput
                 value={content}
                 onChangeText={setContent}
                 placeholder="Type something..."
                 style={styles.contentInput}
+                placeholderTextColor={"#CCCCCC"}
                 multiline
             />
         </KeyboardAvoidingView>

@@ -9,11 +9,12 @@ import { styles } from './NoteList.styles';
 
 interface NoteListProps {
     navigation: NavigationProp<any>;
+    searchQuery: string;
 }
 
 const noteColors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF'];
 
-const NoteList: React.FC<NoteListProps> = ({ navigation }) => {
+const NoteList: React.FC<NoteListProps> = ({ navigation, searchQuery }) => {
     const [notes, setNotes] = useState<{ id: string; title: string; }[]>([]);
 
     const loadNotes = async () => {
@@ -58,7 +59,11 @@ const NoteList: React.FC<NoteListProps> = ({ navigation }) => {
         loadNotes();
     }, []);
 
-    if (notes.length === 0) {
+    const filteredNotes = notes.filter(note =>
+        note.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (filteredNotes.length === 0) {
         return (
             <View style={styles.emptyContainer}>
                 <Image
@@ -72,7 +77,7 @@ const NoteList: React.FC<NoteListProps> = ({ navigation }) => {
 
     return (
         <FlatList
-            data={notes}
+            data={filteredNotes}
             renderItem={({ item, index }) => (
                 <Swipeable
                     renderRightActions={() => (
