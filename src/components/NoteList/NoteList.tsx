@@ -63,7 +63,7 @@ const NoteList: React.FC<NoteListProps> = ({ navigation, searchQuery }) => {
         note.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    if (filteredNotes.length === 0) {
+    if (notes.length === 0) {
         return (
             <View style={styles.emptyContainer}>
                 <Image
@@ -75,9 +75,21 @@ const NoteList: React.FC<NoteListProps> = ({ navigation, searchQuery }) => {
         );
     }
 
+    if (searchQuery && filteredNotes.length === 0) {
+        return (
+            <View style={styles.emptyContainer}>
+                <Image
+                    source={require('../../../assets/images/searchNote.png')}
+                    style={styles.emptyImage}
+                />
+                <Text style={styles.emptyText}>No notes found for your search.</Text>
+            </View>
+        );
+    }
+
     return (
         <FlatList
-            data={filteredNotes}
+            data={filteredNotes.length > 0 ? filteredNotes : notes}
             renderItem={({ item, index }) => (
                 <Swipeable
                     renderRightActions={() => (
