@@ -20,5 +20,13 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 5,
     color: '#FFF',
-  }
+  },
+  deleteButtonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    backgroundColor: 'red',
+    borderRadius: 10,
+    marginVertical: 8,
+  },
 });

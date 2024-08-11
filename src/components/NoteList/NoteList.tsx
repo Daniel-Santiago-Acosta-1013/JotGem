@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, Image, Text } from 'react-native';
+import { FlatList, View, Image, Text, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Note from '../Note/Note';
 import { NavigationProp } from '@react-navigation/native';
+import { Swipeable } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './NoteList.styles';
 
 interface NoteListProps {
@@ -31,6 +33,27 @@ const NoteList: React.FC<NoteListProps> = ({ navigation }) => {
         }
     };
 
+    const deleteNote = async (id: string) => {
+        try {
+            await AsyncStorage.removeItem(id);
+            setNotes((prevNotes) => prevNotes.filter(note => note.id !== id));
+        } catch (error) {
+            console.error('Failed to delete note', error);
+        }
+    };
+
+    const handleDelete = (id: string) => {
+        Alert.alert(
+            'Delete Note',
+            'Are you sure you want to delete this note?',
+            [
+                { text: 'Cancel', style: 'cancel' },
+                { text: 'Delete', onPress: () => deleteNote(id), style: 'destructive' },
+            ],
+            { cancelable: true }
+        );
+    };
+
     useEffect(() => {
         loadNotes();
     }, []);
@@ -51,12 +74,25 @@ const NoteList: React.FC<NoteListProps> = ({ navigation }) => {
         <FlatList
             data={notes}
             renderItem={({ item, index }) => (
-                <Note
-                    title={item.title}
-                    color={noteColors[index % noteColors.length]}
-                    onPress={() => navigation.navigate('EditScreen', { id: item.id })} // Navegar al EditScreen con el ID de la nota
-                    id={item.id}
-                />
+                <Swipeable
+                    renderRightActions={() => (
+                        <View style={styles.deleteButtonContainer}>
+                            <Icon
+                                name="trash-2"
+                                size={24}
+                                color="#fff"
+                                onPress={() => handleDelete(item.id)}
+                            />
+                        </View>
+                    )}
+                >
+                    <Note
+                        title={item.title}
+                        color={noteColors[index % noteColors.length]}
+                        onPress={() => navigation.navigate('EditScreen', { id: item.id })}
+                        id={item.id}
+                    />
+                </Swipeable>
             )}
             keyExtractor={(item) => item.id}
             style={styles.list}
