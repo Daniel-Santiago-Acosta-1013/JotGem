@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#252525',
+        backgroundColor: '#3B3B3B',
         color: '#fff'
     },
     text: {
@@ -18,14 +18,14 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         right: 30,
         bottom: 30,
-        backgroundColor: '#5067FF', // Example color, change as needed
-        width: 56, // Standard Material Design FAB size
-        height: 56,
-        borderRadius: 28, // Half the width/height to make it a perfect circle
+        backgroundColor: '#252525',
+        width: 70,
+        height: 70,
+        borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 8, // Shadow for Android
-        shadowColor: '#000', // Shadow for iOS
+        elevation: 8,
+        shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
