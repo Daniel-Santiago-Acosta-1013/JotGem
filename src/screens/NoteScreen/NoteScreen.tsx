@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './NoteScreen.styles';
@@ -20,6 +20,11 @@ const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
 
     // Function to save note to AsyncStorage and navigate back to HomeScreen
     const saveNote = async () => {
+        if (!title.trim() || !content.trim()) {
+            Alert.alert('Validation Error', 'Both title and content are required.');
+            return;
+        }
+
         try {
             // Generate a unique ID for the note
             const id = new Date().toISOString();
