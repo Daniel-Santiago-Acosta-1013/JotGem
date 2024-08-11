@@ -21,10 +21,10 @@ export const styles = StyleSheet.create({
     },
     iconStyle: {
         color: 'white',
-        width: 44,
-        height: 44,
+        width: 50,
+        height: 50,
         borderRadius: 12,
-        backgroundColor: '#9A9A9A',
+        backgroundColor: '#3B3B3B',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
