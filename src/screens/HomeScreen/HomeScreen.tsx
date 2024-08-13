@@ -22,13 +22,17 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         setSearchQuery(query);
     };
 
+    const handleCloseSearch = () => {
+        setSearchQuery('');
+    };
+
     const goToAddNote = () => {
         navigation.navigate('NoteScreen');
     };
 
     return (
         <View style={styles.container}>
-            <Header onSearch={handleSearch} />
+            <Header onSearch={handleSearch} onCloseSearch={handleCloseSearch} />
             <NoteList navigation={navigation} searchQuery={searchQuery} />
             <TouchableOpacity onPress={goToAddNote} style={styles.addButton}>
                 <Icon name="plus" size={24} color={"#fff"} />

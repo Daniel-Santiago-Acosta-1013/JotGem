@@ -75,7 +75,7 @@ const NoteList: React.FC<NoteListProps> = ({ navigation, searchQuery }) => {
         );
     }
 
-    if (searchQuery && filteredNotes.length === 0) {
+    if (searchQuery && filteredNotes.length === 0 && notes.length > 0) {
         return (
             <View style={styles.emptyContainer}>
                 <Image

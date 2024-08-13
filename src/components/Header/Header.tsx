@@ -4,19 +4,18 @@ import Icon from 'react-native-vector-icons/Feather';
 import SearchBar from '../SearchBar/SearchBar';
 import { styles } from './Header.styles';
 
-const Header: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) => {
+const Header: React.FC<{ onSearch: (query: string) => void, onCloseSearch: () => void }> = ({ onSearch, onCloseSearch }) => {
     const [isSearching, setIsSearching] = useState(false);
-
-    const handleSearch = (query: string) => {
-        onSearch(query);
-    };
 
     return (
         <View style={styles.headerContainer}>
             {isSearching ? (
                 <SearchBar
-                    onClose={() => setIsSearching(false)}
-                    onSearch={handleSearch}
+                    onClose={() => {
+                        setIsSearching(false);
+                        onCloseSearch();
+                    }}
+                    onSearch={onSearch}
                 />
             ) : (
                 <>
@@ -37,5 +36,6 @@ const Header: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) =
         </View>
     );
 };
+
 
 export default Header;
