@@ -5,6 +5,9 @@ export const styles = StyleSheet.create({
     padding: 16,
     width: '100%',
   },
+  listContentContainer: {
+    paddingBottom: 50,
+  },
   emptyContainer: {
     marginTop: -80,
     flex: 1,

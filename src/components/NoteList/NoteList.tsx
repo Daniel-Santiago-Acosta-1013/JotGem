@@ -113,6 +113,7 @@ const NoteList: React.FC<NoteListProps> = ({ navigation, searchQuery }) => {
             )}
             keyExtractor={(item) => item.id}
             style={styles.list}
+            contentContainerStyle={styles.listContentContainer}
         />
     );
 };
