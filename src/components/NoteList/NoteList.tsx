@@ -45,8 +45,8 @@ const NoteList: React.FC<NoteListProps> = ({ navigation, searchQuery }) => {
 
     const handleDelete = (id: string) => {
         Alert.alert(
-            'Delete Note',
-            'Are you sure you want to delete this note?',
+            'Eliminar nota',
+            '¿Estás seguro de que quieres eliminar esta nota?',
             [
                 { text: 'Cancel', style: 'cancel' },
                 { text: 'Delete', onPress: () => deleteNote(id), style: 'destructive' },

@@ -41,7 +41,7 @@ const EditScreen: React.FC<EditScreenProps> = ({ navigation, route }) => {
     // Función para actualizar la nota en AsyncStorage
     const updateNote = async () => {
         if (!title.trim() || !content.trim()) {
-            Alert.alert('Validation Error', 'Both title and content are required.');
+            Alert.alert('Error de validación', 'Tanto el título como el contenido son obligatorios.');
             return;
         }
 

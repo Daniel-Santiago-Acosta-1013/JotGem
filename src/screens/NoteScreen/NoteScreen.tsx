@@ -21,7 +21,7 @@ const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
     // Function to save note to AsyncStorage and navigate back to HomeScreen
     const saveNote = async () => {
         if (!title.trim() || !content.trim()) {
-            Alert.alert('Validation Error', 'Both title and content are required.');
+            Alert.alert('Error de validación', 'Tanto el título como el contenido son obligatorios.');
             return;
         }
 
