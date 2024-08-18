@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert, BackHandler } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './NoteScreen.styles';
@@ -17,6 +17,35 @@ interface NoteScreenProps {
 const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
+    const handleBackPress = () => {
+        if (title.trim() || content.trim()) {
+            Alert.alert(
+                'Guardar Cambios',
+                'Tienes cambios sin guardar. ¿Quieres guardar antes de salir?',
+                [
+                    {
+                        text: 'No',
+                        onPress: () => navigation.dispatch(StackActions.replace('Home')),
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'Sí',
+                        onPress: () => saveNote(),
+                    },
+                ],
+                { cancelable: true }
+            );
+            return true;
+        }
+        navigation.dispatch(StackActions.replace('Home'));
+        return true;
+    };
+
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+        return () => BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+    }, [title, content]);
 
     // Function to save note to AsyncStorage and navigate back to HomeScreen
     const saveNote = async () => {
@@ -42,13 +71,13 @@ const NoteScreen: React.FC<NoteScreenProps> = ({ navigation }) => {
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity
-                    onPress={() => navigation.dispatch(StackActions.replace('Home'))}
+                    onPress={handleBackPress}
                     style={styles.styleIcon}
                 >
                     <Icon name="arrow-left" size={24} color={"#fff"} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={saveNote} style={styles.styleIcon}>
-                    <Icon name="save" size={24} color={"#fff"}/>
+                    <Icon name="save" size={24} color={"#fff"} />
                 </TouchableOpacity>
             </View>
             <TextInput
